@@ -45,7 +45,6 @@ docker run \
 ```shell
 docker run \
     --rm \
-    -v $HOME/.aws:/root/.aws:Z,ro \
     -v $(pwd)/csvs:/var/lib/sgq:Z \
     chrisx86/sgq \
     query 'SELECT * FROM $vpc_name WHERE rules_grants_cidr_ip = "203.0.113.0/24"'
