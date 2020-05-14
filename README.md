@@ -53,4 +53,4 @@ docker run \
 
 ## External dependencies
 
-* This project utilizes [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper) and [q](https://github.com/harelba/q).
+* This project depends on [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper) and [q](https://github.com/harelba/q).
