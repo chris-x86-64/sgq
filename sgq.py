@@ -68,7 +68,7 @@ class SecurityGroupQuery():
 
     def dump_secgroup_csvs(self):
         vpcs = self._get_vpcs()
-        for vname, vid in vpcs.iteritems():
+        for vname, vid in vpcs.items():
             firewall = Fw(region=self.region_name, profile=None, vpc=vid)
             with open(vname, 'w') as f:
                 f.write(firewall.csv)
