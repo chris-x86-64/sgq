@@ -1,9 +1,7 @@
 # sgq
 Query AWS VPC security groups like SQL.
 
-## Usage
-
-### Build
+## Building
 
 ```shell
 docker build \
@@ -13,7 +11,7 @@ docker build \
 
 Sorry, it's not ready on docker.io (yet).
 
-### Prerequisite(s)
+## Prerequisites
 
 * Configure your AWS credentials on your host using awscli
     ```
@@ -22,12 +20,15 @@ Sorry, it's not ready on docker.io (yet).
 
 * All VPCs you wish to examine must have the `Name` tags.
 
-* You have access to Docker.
-    * You can still execute `python2 sgq.py` directly as long as you have:
-        * Python 2.7.15
-        * boto3
-        * ec2-security-groups-dumper
-        * q-text-as-data
+* (Recommended) You have Docker or an alternative like Podman ready.
+
+* (Alternative) You can execute `python3 sgq.py` without Docker as long as you have:
+    * Python 3.7 or later along with the following packages:
+        * [boto3](https://github.com/boto/boto3)
+        * [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)
+    * [q](https://github.com/harelba/q)
+
+## Usage
 
 ### Download security group lists
 
@@ -50,7 +51,6 @@ docker run \
     query 'SELECT * FROM $vpc_name WHERE rules_grants_cidr_ip = "203.0.113.0/24"'
 ```
 
+## External dependencies
 
-### How this works
-
-* Uses [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper) and [q](https://github.com/harelba/q) under the hood.
+* This project utilizes [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper) and [q](https://github.com/harelba/q).

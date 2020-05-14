@@ -1,2 +1,0 @@
-boto3
-ec2-security-groups-dumper
