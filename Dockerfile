@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.11
 MAINTAINER Christopher Smith <chris-x86-64@users.noreply.github.com>
 
 RUN curl -LO https://github.com/harelba/q/releases/download/2.0.19/q-text-as-data_2.0.19-2_amd64.deb && \
