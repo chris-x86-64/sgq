@@ -8,6 +8,10 @@ RUN apt-get update && \
     apt-get install -y jq pipenv && \
     rm -rf /var/cache/apt/lists/*
 
+RUN useradd -m -d /sgq sgq
+USER sgq
+WORKDIR /sgq
+
 COPY Pipfile Pipfile.lock /sgq/
 RUN cd /sgq && pipenv install --system --ignore-pipfile --deploy
 COPY sgq.py /sgq/bin/sgq.py
