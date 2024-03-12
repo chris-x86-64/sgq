@@ -13,7 +13,7 @@ USER sgq
 WORKDIR /sgq
 
 COPY Pipfile Pipfile.lock /sgq/
-RUN cd /sgq && pipenv install --system --ignore-pipfile --deploy
+RUN pipenv install --ignore-pipfile --deploy
 COPY sgq.py /sgq/bin/sgq.py
 
 VOLUME ["/var/lib/sgq"]
