@@ -5,7 +5,7 @@ RUN curl -LO https://github.com/harelba/q/releases/download/2.0.19/q-text-as-dat
     dpkg -i q-text-as-data_2.0.19-2_amd64.deb && \
     rm q-text-as-data_2.0.19-2_amd64.deb
 RUN apt-get update && \
-    apt-get install -y jq pipenv && \
+    apt-get install --no-install-recommends -y jq pipenv && \
     rm -rf /var/cache/apt/lists/*
 
 RUN useradd -m -d /sgq sgq
