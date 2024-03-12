@@ -16,7 +16,7 @@ COPY Pipfile Pipfile.lock /sgq/
 RUN pipenv install --ignore-pipfile --deploy
 COPY sgq.py /sgq/bin/sgq.py
 
-VOLUME ["/var/lib/sgq"]
-WORKDIR /var/lib/sgq
+VOLUME ["/sgq/csvs"]
+WORKDIR /sgq/csvs
 
 ENTRYPOINT ["python3", "/sgq/bin/sgq.py"]
