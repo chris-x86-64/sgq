@@ -1,9 +1,9 @@
 FROM python:3.11
 LABEL maintainer="Christopher Smith <chris-x86-64@users.noreply.github.com>"
 
-RUN curl -LO https://github.com/harelba/q/releases/download/2.0.19/q-text-as-data_2.0.19-2_amd64.deb && \
-    dpkg -i q-text-as-data_2.0.19-2_amd64.deb && \
-    rm q-text-as-data_2.0.19-2_amd64.deb
+RUN curl -LO https://github.com/harelba/q/releases/download/v3.1.6/q-text-as-data-3.1.6-1.x86_64.deb && \
+    dpkg -i q-text-as-data_3.1.6-1_amd64.deb && \
+    rm q-text-as-data_3.1.6-1_amd64.deb
 RUN apt-get update && \
     apt-get install --no-install-recommends -y jq pipenv && \
     rm -rf /var/cache/apt/lists/*
