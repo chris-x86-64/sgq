@@ -47,16 +47,14 @@ uv run sgq.py <command>
     ```
     You can also use AWS SSO login.
 
-* All VPCs you wish to examine must have the `Name` tags.
+* **VPC Name Tags**: All VPCs you wish to examine must have `Name` tags set. The VPC name becomes the table name in SQL queries.
 
-* (Recommended) You have Docker or an alternative like Podman ready.
+* **Docker or Podman**: Recommended for the easiest setup.
 
-* (Alternative) You can execute `uv run sgq.py` without Docker as long as you have:
-    * Python 3.11 along with the following packages:
-        * [uv](https://github.com/astral-sh/uv) as package/project manager, which will manage installing:
-            * [boto3](https://github.com/boto/boto3)
-            * [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)
-    * [q](https://github.com/harelba/q)
+* **For non-Docker usage**:
+    * Python 3.11 (specifically >=3.11, <3.12)
+    * [uv](https://github.com/astral-sh/uv) as package/project manager
+    * [q](https://github.com/harelba/q) command-line tool for SQL queries on CSV files
 
 ## Usage
 
