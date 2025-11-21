@@ -58,26 +58,26 @@ uv run sgq.py <command>
 
 ## Usage
 
-### Download security group lists
+### Download Security Group Lists
 
 ```shell
 docker run \
     --rm \
     -v $HOME/.aws:/sgq/.aws:Z,ro \
     -v $(pwd)/csvs:/sgq/csvs:Z \
-    -e AWS_PROFILE=default
+    -e AWS_PROFILE=default \
     chrisx86/sgq \
     refresh
 ```
 
 Change `AWS_PROFILE` if you use alternative profiles or SSO login.
 
-### Query downloaded security groups
+### Query Downloaded Security Groups
 
 ```shell
 docker run \
     --rm \
-    -v $(pwd)/csvs:/var/lib/sgq:Z \
+    -v $(pwd)/csvs:/sgq/csvs:Z \
     chrisx86/sgq \
     query 'SELECT * FROM $vpc_name WHERE rules_grants_cidr_ip = "203.0.113.0/24"'
 ```
