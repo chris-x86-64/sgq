@@ -9,23 +9,23 @@ docker build \
     .
 ```
 
-Sorry, it's not ready on docker.io (yet).
-
 ## Prerequisites
 
 * Configure your AWS credentials on your host using awscli
     ```
     aws configure
     ```
+* You can also use AWS SSO login
 
 * All VPCs you wish to examine must have the `Name` tags.
 
 * (Recommended) You have Docker or an alternative like Podman ready.
 
-* (Alternative) You can execute `python3 sgq.py` without Docker as long as you have:
-    * Python 3.7 or later along with the following packages:
-        * [boto3](https://github.com/boto/boto3)
-        * [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)
+* (Alternative) You can execute `uv run sgq.py` without Docker as long as you have:
+    * Python 3.11 along with the following packages:
+        * [uv](https://github.com/astral-sh/uv) as package/project manager, which will manage installing:
+            * [boto3](https://github.com/boto/boto3)
+            * [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)
     * [q](https://github.com/harelba/q)
 
 ## Usage
@@ -35,11 +35,14 @@ Sorry, it's not ready on docker.io (yet).
 ```shell
 docker run \
     --rm \
-    -v $HOME/.aws:/root/.aws:Z,ro \
-    -v $(pwd)/csvs:/var/lib/sgq:Z \
+    -v $HOME/.aws:/sgq/.aws:Z,ro \
+    -v $(pwd)/csvs:/sgq/csvs:Z \
+    -e AWS_PROFILE=default
     chrisx86/sgq \
     refresh
 ```
+
+Change `AWS_PROFILE` if you use alternative profiles or SSO login.
 
 ### Query downloaded security groups
 
