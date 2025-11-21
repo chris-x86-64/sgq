@@ -70,7 +70,11 @@ docker run \
     refresh
 ```
 
-Change `AWS_PROFILE` if you use alternative profiles or SSO login.
+**Options:**
+- `-e AWS_PROFILE=<profile>`: Specify AWS profile (default or SSO profile name)
+    - You may also specify desired regions in your AWS profile.
+
+This creates CSV files in `./csvs/` named after your VPC Name tags (e.g., `production`, `staging`, `development`).
 
 ### Query Downloaded Security Groups
 
@@ -79,9 +83,66 @@ docker run \
     --rm \
     -v $(pwd)/csvs:/sgq/csvs:Z \
     chrisx86/sgq \
-    query 'SELECT * FROM $vpc_name WHERE rules_grants_cidr_ip = "203.0.113.0/24"'
+    query 'SELECT * FROM production WHERE rules_grants_cidr_ip = "203.0.113.0/24"'
 ```
 
-## External dependencies
+The table name in your SQL query corresponds to the VPC's `Name` tag. Each CSV file becomes a queryable table.
 
-* This project depends on [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper) and [q](https://github.com/harelba/q).
+## Examples
+
+### Find all security groups allowing traffic from a specific IP
+```shell
+docker run --rm -v $(pwd)/csvs:/sgq/csvs:Z chrisx86/sgq \
+    query 'SELECT * FROM production WHERE rules_grants_cidr_ip = "203.0.113.0/24"'
+```
+
+### Find security groups allowing SSH from anywhere
+```shell
+docker run --rm -v $(pwd)/csvs:/sgq/csvs:Z chrisx86/sgq \
+    query 'SELECT * FROM production WHERE rules_to_port = "22" AND rules_grants_cidr_ip = "0.0.0.0/0"'
+```
+
+### List all security groups in a VPC
+```shell
+docker run --rm -v $(pwd)/csvs:/sgq/csvs:Z chrisx86/sgq \
+    query 'SELECT security_group_id, security_group_name FROM production'
+```
+
+### Find security groups by name pattern
+```shell
+docker run --rm -v $(pwd)/csvs:/sgq/csvs:Z chrisx86/sgq \
+    query 'SELECT * FROM staging WHERE security_group_name LIKE "%web%"'
+```
+
+### Query across multiple VPCs
+```shell
+docker run --rm -v $(pwd)/csvs:/sgq/csvs:Z chrisx86/sgq \
+    query 'SELECT * FROM production UNION SELECT * FROM staging'
+```
+
+## CSV Schema
+
+The security group CSV files contain the following columns (from [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)):
+- `security_group_id`
+- `security_group_name`
+- `security_group_description`
+- `vpc_id`
+- `rules_direction` (ingress/egress)
+- `rules_ip_protocol`
+- `rules_from_port`
+- `rules_to_port`
+- `rules_grants_cidr_ip`
+- `rules_grants_security_group_id`
+- And more...
+
+## Dependencies
+
+This project uses:
+* [boto3](https://github.com/boto/boto3) - AWS SDK for Python
+* [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper) - Exports security groups to CSV
+* [q](https://github.com/harelba/q) - SQL engine for CSV files
+* [uv](https://github.com/astral-sh/uv) - Fast Python package manager
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
