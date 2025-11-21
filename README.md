@@ -5,12 +5,38 @@
 
 Query AWS VPC security groups like SQL.
 
-## Building
+## How It Works
+
+`sgq` is a two-step workflow tool for analyzing AWS VPC security groups:
+
+1. **Refresh**: Downloads all security groups from your AWS VPCs and saves them as CSV files (one per VPC)
+2. **Query**: Use SQL syntax to search across the downloaded security group data
+
+This approach allows you to run complex queries against your security groups without repeatedly hitting AWS APIs.
+It also provides a consistent inventory of your security groups for easy comparison over time.
+
+## Installation
+
+### Using Docker (Recommended)
+
+Build the Docker image:
+```shell
+docker build -t chrisx86/sgq .
+```
+
+### Using Python and uv
+
+If you prefer to run without Docker:
 
 ```shell
-docker build \
-    -t chrisx86/sgq \
-    .
+# Install uv if you don't have it
+pipx install uv
+
+# Install dependencies
+uv sync
+
+# Run sgq
+uv run sgq.py <command>
 ```
 
 ## Prerequisites
