@@ -41,11 +41,11 @@ uv run sgq.py <command>
 
 ## Prerequisites
 
-* Configure your AWS credentials on your host using awscli
+* **AWS Credentials**: Configure AWS credentials on your host using awscli:
     ```
     aws configure
     ```
-* You can also use AWS SSO login
+    You can also use AWS SSO login.
 
 * All VPCs you wish to examine must have the `Name` tags.
 
