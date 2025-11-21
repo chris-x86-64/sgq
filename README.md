@@ -9,11 +9,11 @@ Query AWS VPC security groups like SQL.
 
 `sgq` is a two-step workflow tool for analyzing AWS VPC security groups:
 
-1. **Refresh**: Downloads all security groups from your AWS VPCs and saves them as CSV files (one per VPC)
+1. **Refresh**: Downloads all security groups from your AWS VPCs and saves them as CSV files (one per VPC). Records are sorted by security group ID in ascending order for consistent output.
 2. **Query**: Use SQL syntax to search across the downloaded security group data
 
 This approach allows you to run complex queries against your security groups without repeatedly hitting AWS APIs.
-It also provides a consistent inventory of your security groups for easy comparison over time.
+It also provides a consistent inventory of your security groups for easy comparison over time. The stable sorting order makes the CSV files compatible with `diff` and other comparison tools.
 
 ## Installation
 
@@ -41,7 +41,7 @@ uv run sgq.py <command>
 
 ## Prerequisites
 
-* **AWS Credentials**: Configure AWS credentials on your host using awscli:
+* **AWS Credentials**: Configure AWS credentials and default region on your host using awscli:
     ```
     aws configure
     ```
