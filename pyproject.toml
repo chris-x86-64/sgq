@@ -15,4 +15,4 @@ package = false
 
 [[tool.uv.index]]
 name = "pypi"
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
