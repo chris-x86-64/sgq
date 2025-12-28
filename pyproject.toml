@@ -1,0 +1,18 @@
+[project]
+name = "sgq"
+version = "0.0.1"
+requires-python = ">=3.11, <3.12"
+dependencies = [
+    "boto3",
+    "ec2-security-groups-dumper",
+]
+
+[dependency-groups]
+dev = []
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
