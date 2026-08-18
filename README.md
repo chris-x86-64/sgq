@@ -1,3 +1,5 @@
+
+
 # sgq
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -54,7 +56,7 @@ uv run sgq.py <command>
 * **For non-Docker usage**:
     * Python 3.11 (specifically >=3.11, <3.12)
     * [uv](https://github.com/astral-sh/uv) as package/project manager
-    * [q](https://github.com/harelba/q) command-line tool for SQL queries on CSV files
+    * [q](https://github.com/harelba/q) command-line tool for SQL queries on CSV files (sgq invokes it at `/usr/bin/q`)
 
 ## Usage
 
