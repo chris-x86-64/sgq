@@ -1,7 +1,7 @@
 # sgq
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
 
 Query AWS VPC security groups like SQL.
 
@@ -52,7 +52,7 @@ uv run sgq.py <command>
 * **Docker or Podman**: Recommended for the easiest setup.
 
 * **For non-Docker usage**:
-    * Python 3.11 (specifically >=3.11, <3.12)
+    * Python 3.13 (specifically >=3.13, <3.14)
     * [uv](https://github.com/astral-sh/uv) as package/project manager
     * [q](https://github.com/harelba/q) command-line tool for SQL queries on CSV files
 
