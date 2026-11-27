@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.13-slim-trixie
 LABEL maintainer="Christopher Smith <chris-x86-64@users.noreply.github.com>"
 
 RUN curl -LO https://github.com/harelba/q/releases/download/v3.1.6/q-text-as-data-3.1.6-1.x86_64.deb && \
